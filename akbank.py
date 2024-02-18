@@ -21,7 +21,7 @@ class Library:
         release_year = input("Enter the release year of the book: ")
         num_pages = input("Enter the number of pages of the book: ")
 
-        book_info = f"{title},{author},{release_year},{num_pages}\n"
+        book_info = f"\n{title},{author},{release_year},{num_pages}"
         self.file_handle.write(book_info)
         print("Book added successfully.")
 
