@@ -11,9 +11,12 @@ class Library:
     def list_books(self):
         self.file_handle.seek(0)
         self.books = self.file_handle.read().splitlines()
-        for book in self.books:
-            book_info = book.split(",")
-            print(f"Book Title: {book_info[0]}, Author: {book_info[1]}")
+        if len(self.books)==0:
+            print("List is empty. You can add books from the menu.")
+        else:
+            for book in self.books:
+                book_info = book.split(",")
+                print(f"Book Title: {book_info[0]}, Author: {book_info[1]}")
 
     def add_book(self):
         title = input("Enter the title of the book: ")
@@ -21,7 +24,7 @@ class Library:
         release_year = input("Enter the release year of the book: ")
         num_pages = input("Enter the number of pages of the book: ")
 
-        book_info = f"\n{title},{author},{release_year},{num_pages}"
+        book_info = f"{title},{author},{release_year},{num_pages}\n"
         self.file_handle.write(book_info)
         print("Book added successfully.")
 
@@ -48,6 +51,7 @@ while True:
     print("1) List Books")
     print("2) Add Book")
     print("3) Remove Book")
+    print("Q) Exit")
     choice = input("Enter your choice (1/2/3/Q): ")
 
     if choice == "1":
@@ -56,8 +60,8 @@ while True:
         lib.add_book()
     elif choice == "3":
         lib.remove_book()
-    elif choice=="Q" or "q":
-        print("program kapatılıyor")
+    elif choice=="Q" or choice=="q":
+        print("App is closing..")
         sys.exit()
     else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        print("Invalid choice. Please enter 1, 2, 3, or Q.")
